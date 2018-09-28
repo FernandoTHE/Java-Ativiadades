@@ -1,0 +1,38 @@
+package atv3;
+
+public class MTH01 extends Thread {
+
+    private String nome;
+    int tempo;
+
+    public MTH01(String nome, int tempo) {
+        this.nome = nome;
+        this.tempo = tempo;
+    }
+
+    @Override
+    public void run() {
+        try {
+            for (int i = 0; i < 6; i++) {
+                System.out.println(nome + " numero:" + i);
+                Thread.sleep(tempo);
+            }
+        } catch (InterruptedException e) {
+        }
+        System.out.println(nome + " Thread Terminou \n");
+    }
+
+    public static void main(String[] args) {
+
+        MTH01 thread = new MTH01("Thread #1", 200);
+        thread.start(); //Iniciação da Thread
+        MTH01 thread2 = new MTH01("Thread #2", 400);
+        thread2.start();
+        MTH01 thread3 = new MTH01("Thread #3", 500);
+        thread3.start();
+        MTH01 thread4 = new MTH01("Thread #4", 600);
+        thread4.start();
+        MTH01 thread5 = new MTH01("Thread #5", 700);
+        thread5.start();
+    }
+}
