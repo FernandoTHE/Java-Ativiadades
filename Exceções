@@ -1,16 +1,88 @@
-Codifique	o	que	se	pede	abaixo:
-a) Faça	um	pequeno	programa	que	pergunte	ao	usuário	o	seu	nome e	o	seu	salário.	
-Em	 seguida	 calcule	 o	 valor	 que	 uma	 suposta	empresa	 teria	 que	 lhe	 pagar	 de	
-FGTS.
-a. Se	o	usuário	digitar	seu	nome	em	um	formato	inválido,	o	programa	deve	
-exibir	uma	mensagem	de	erro	e	solicitá-lo	novamente:
-i. O	nome	deve	conter	de	6	a	45	caracteres.
-ii. O	nome	não	pode	conter	números.
-b. Se	o	usuário	digitar	seu	salário em	um	formato	inválido,	o	programa	deve	
-exibir	uma	mensagem	de	erro	e	solicitá-lo	novamente:
-i. O	valor	do	salario deve	ser	um	numero	fracionário.
-ii. O	valor	do	salário	deve	ser	igual	ou	maior	que	R$	954,00.
-c. Finalmente,	o	programa	exibe	o	nome,	salário	e	FGTS	a ser	depositado.
-d. O	FGTS	deve	corresponder	a	8%	do	salário.
-e. Crie	suas	próprias	exceptions	(conforme	exemplos	do	slide)	para	tratar	e	
-exibir	as	mensagens	de	erro.
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package javaapplication2;
+import java.util.Scanner;
+
+/**
+ *
+ * @author Fernando
+ */
+class valida_salario extends Exception {
+    double ValorSalario;
+    public valida_salario(double ValorSalario){
+        this.ValorSalario = ValorSalario;   
+    }
+    @Override
+    public String toString(){
+        return "O salario deve ser igual ou superior ao valor de: R$ 954,00";
+        }
+}
+    
+class valida_nome extends Exception{
+    String nomeF;
+    public valida_nome(String nomeF){
+        this.nomeF = nomeF;    
+    }
+    @Override
+    public String toString(){
+        return "O nome deve conter entre 6 a 45 caracteres e que não tenha numeros";
+        }
+}
+
+class fgts{
+    public double cal_fgts(double salariomensal){
+        double fgts = salariomensal *8/100;
+        return fgts;
+    }
+}
+
+public class Excepções{
+    
+    public static void main (String[]args){
+        
+        String nome = "";
+        double salario = 0;
+        boolean veri01 = true;
+        boolean veri02 = true;
+        Scanner entrada = new Scanner(System.in);
+        fgts calc = new fgts();
+        
+        do{
+            try{
+                System.out.println("Digite seu nome:");
+                nome = entrada.next();
+                    if(nome.length()<6 || nome.length ()>45 || !nome.matches("[a-zA-Z]+")){
+                        throw new valida_nome(nome);      
+                    }else{
+                        veri01 = false;
+                    }
+            }catch(valida_nome e){
+                System.out.println(e);
+            }
+        }while(veri01);
+        
+        do{
+            try{
+                System.out.println("Digite o salario");
+                salario = entrada.nextDouble();
+                if(salario <954 ){
+                    throw new valida_salario(salario);
+                }else{
+                    veri02 = false;
+                }
+            }catch (valida_salario e){
+                System.out.println(e);
+            }
+        }while(veri02);
+        
+        System.out.println("______________________\n");
+        System.out.println("Dados do Funcionário");
+        System.out.printf("nome >> %s",nome);
+        System.out.printf("\nSalario >> %.2f",salario);
+        System.out.printf("\nFGTS a receber >> %.2f",calc.cal_fgts(salario));
+        System.out.println("\n_______________________");   
+    }   
+}
