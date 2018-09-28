@@ -1,0 +1,16 @@
+Codifique	o	que	se	pede	abaixo:
+a) Faça	um	pequeno	programa	que	pergunte	ao	usuário	o	seu	nome e	o	seu	salário.	
+Em	 seguida	 calcule	 o	 valor	 que	 uma	 suposta	empresa	 teria	 que	 lhe	 pagar	 de	
+FGTS.
+a. Se	o	usuário	digitar	seu	nome	em	um	formato	inválido,	o	programa	deve	
+exibir	uma	mensagem	de	erro	e	solicitá-lo	novamente:
+i. O	nome	deve	conter	de	6	a	45	caracteres.
+ii. O	nome	não	pode	conter	números.
+b. Se	o	usuário	digitar	seu	salário em	um	formato	inválido,	o	programa	deve	
+exibir	uma	mensagem	de	erro	e	solicitá-lo	novamente:
+i. O	valor	do	salario deve	ser	um	numero	fracionário.
+ii. O	valor	do	salário	deve	ser	igual	ou	maior	que	R$	954,00.
+c. Finalmente,	o	programa	exibe	o	nome,	salário	e	FGTS	a ser	depositado.
+d. O	FGTS	deve	corresponder	a	8%	do	salário.
+e. Crie	suas	próprias	exceptions	(conforme	exemplos	do	slide)	para	tratar	e	
+exibir	as	mensagens	de	erro.
